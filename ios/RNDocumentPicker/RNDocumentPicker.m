@@ -1,12 +1,6 @@
 #import "RNDocumentPicker.h"
-
-#if __has_include(<React/RCTConvert.h>)
 #import <React/RCTConvert.h>
 #import <React/RCTBridge.h>
-#else // back compatibility for RN version < 0.40
-#import "RCTConvert.h"
-#import "RCTBridge.h"
-#endif
 
 #define IDIOM    UI_USER_INTERFACE_IDIOM()
 #define IPAD     UIUserInterfaceIdiomPad
