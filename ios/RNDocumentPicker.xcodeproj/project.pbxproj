@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CDB4A8C722CCE7F600A9F966 /* RNDocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4A8C622CCE7F600A9F966 /* RNDocumentPicker.swift */; };
+		CD902C5222CCEED1002C23A2 /* RNDocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD902C5122CCEED1002C23A2 /* RNDocumentPicker.swift */; };
 		E01DD9E11D2311A600C39062 /* RNDocumentPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E01DD9E01D2311A600C39062 /* RNDocumentPicker.m */; };
 /* End PBXBuildFile section */
 
@@ -24,8 +24,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CD902C5122CCEED1002C23A2 /* RNDocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNDocumentPicker.swift; sourceTree = "<group>"; };
 		CDB4A8C522CCE7F600A9F966 /* RNDocumentPicker-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RNDocumentPicker-Bridging-Header.h"; sourceTree = "<group>"; };
-		CDB4A8C622CCE7F600A9F966 /* RNDocumentPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RNDocumentPicker.swift; path = "../../../merlin/node_modules/react-native-document-picker/RNDocumentPicker.swift"; sourceTree = "<group>"; };
 		E01DD9DB1D2311A600C39062 /* libRNDocumentPicker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNDocumentPicker.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E01DD9E01D2311A600C39062 /* RNDocumentPicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNDocumentPicker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -61,8 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				E01DD9E01D2311A600C39062 /* RNDocumentPicker.m */,
-				CDB4A8C622CCE7F600A9F966 /* RNDocumentPicker.swift */,
 				CDB4A8C522CCE7F600A9F966 /* RNDocumentPicker-Bridging-Header.h */,
+				CD902C5122CCEED1002C23A2 /* RNDocumentPicker.swift */,
 			);
 			path = RNDocumentPicker;
 			sourceTree = "<group>";
@@ -125,8 +125,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD902C5222CCEED1002C23A2 /* RNDocumentPicker.swift in Sources */,
 				E01DD9E11D2311A600C39062 /* RNDocumentPicker.m in Sources */,
-				CDB4A8C722CCE7F600A9F966 /* RNDocumentPicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
