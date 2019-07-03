@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E01DD9DF1D2311A600C39062 /* RNDocumentPicker.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E01DD9DE1D2311A600C39062 /* RNDocumentPicker.h */; };
+		CDB4A8C722CCE7F600A9F966 /* RNDocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4A8C622CCE7F600A9F966 /* RNDocumentPicker.swift */; };
 		E01DD9E11D2311A600C39062 /* RNDocumentPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E01DD9E01D2311A600C39062 /* RNDocumentPicker.m */; };
 /* End PBXBuildFile section */
 
@@ -18,15 +18,15 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				E01DD9DF1D2311A600C39062 /* RNDocumentPicker.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CDB4A8C522CCE7F600A9F966 /* RNDocumentPicker-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RNDocumentPicker-Bridging-Header.h"; sourceTree = "<group>"; };
+		CDB4A8C622CCE7F600A9F966 /* RNDocumentPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RNDocumentPicker.swift; path = "../../../merlin/node_modules/react-native-document-picker/RNDocumentPicker.swift"; sourceTree = "<group>"; };
 		E01DD9DB1D2311A600C39062 /* libRNDocumentPicker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNDocumentPicker.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		E01DD9DE1D2311A600C39062 /* RNDocumentPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNDocumentPicker.h; sourceTree = "<group>"; };
 		E01DD9E01D2311A600C39062 /* RNDocumentPicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNDocumentPicker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,8 +60,9 @@
 		E01DD9DD1D2311A600C39062 /* RNDocumentPicker */ = {
 			isa = PBXGroup;
 			children = (
-				E01DD9DE1D2311A600C39062 /* RNDocumentPicker.h */,
 				E01DD9E01D2311A600C39062 /* RNDocumentPicker.m */,
+				CDB4A8C622CCE7F600A9F966 /* RNDocumentPicker.swift */,
+				CDB4A8C522CCE7F600A9F966 /* RNDocumentPicker-Bridging-Header.h */,
 			);
 			path = RNDocumentPicker;
 			sourceTree = "<group>";
@@ -97,6 +98,7 @@
 				TargetAttributes = {
 					E01DD9DA1D2311A600C39062 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -105,6 +107,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = E01DD9D21D2311A600C39062;
@@ -122,6 +125,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDB4A8C722CCE7F600A9F966 /* RNDocumentPicker.swift in Sources */,
 				E01DD9E11D2311A600C39062 /* RNDocumentPicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -214,30 +218,39 @@
 		E01DD9E51D2311A600C39062 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/node_modules/react-native/React",
 					"$(SRCROOT)/../../react-native/React/**",
 				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "RNDocumentPicker/RNDocumentPicker-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		E01DD9E61D2311A600C39062 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/node_modules/react-native/React",
 					"$(SRCROOT)/../../react-native/React/**",
 				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "RNDocumentPicker/RNDocumentPicker-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
