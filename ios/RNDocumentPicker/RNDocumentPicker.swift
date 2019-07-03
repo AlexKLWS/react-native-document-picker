@@ -23,26 +23,35 @@ public class RNDocumentPicker: NSObject, RCTBridgeModule, UIDocumentMenuDelegate
     public func show(options: NSDictionary, callback: @escaping RCTResponseSenderBlock) {
         let allowedUTIs = RCTConvert.nsArray(options["filetype"])
         
-        let documentPicker: UIDocumentPickerViewController = UIDocumentPickerViewController.init(documentTypes: allowedUTIs as! [String], in: .import)
-        
-        composeCallbacks.append(callback)
-        
-        documentPicker.delegate = self
-        documentPicker.modalPresentationStyle = .formSheet
-        
-        let rootViewController: UIViewController? = (UIApplication.shared.delegate as! ReactNativePopupNavigationProtocol).windowsManager?.getCurrentUIWindow()?.rootViewController
-        
-        
-        rootViewController?.present(documentPicker, animated: true, completion: nil)
+        DispatchQueue.main.sync {[weak self] in
+            let documentPicker: UIDocumentPickerViewController = UIDocumentPickerViewController.init(documentTypes: allowedUTIs as! [String], in: .import)
+            
+            self?.composeCallbacks.append(callback)
+            
+            documentPicker.delegate = self
+            documentPicker.modalPresentationStyle = .formSheet
+            guard var rootViewController: UIViewController = (UIApplication.shared.delegate as! ReactNativePopupNavigationProtocol).windowsManager?.getCurrentUIWindow()?.rootViewController else { return }
+            
+            while rootViewController.presentedViewController != nil {
+                rootViewController = rootViewController.presentedViewController!
+            }
+            
+            rootViewController.present(documentPicker, animated: true, completion: nil)
+        }
     }
     
     public func documentMenu(_ documentMenu: UIDocumentMenuViewController, didPickDocumentPicker documentPicker: UIDocumentPickerViewController) {
-        documentPicker.delegate = self
-        documentPicker.modalPresentationStyle = .formSheet
-        
-        let rootViewController: UIViewController? = (UIApplication.shared.delegate as! ReactNativePopupNavigationProtocol).windowsManager?.getCurrentUIWindow()?.rootViewController
-        
-        rootViewController?.present(documentPicker, animated: true, completion: nil)
+        DispatchQueue.main.sync {
+            documentPicker.delegate = self
+            documentPicker.modalPresentationStyle = .formSheet
+            guard var rootViewController: UIViewController = (UIApplication.shared.delegate as! ReactNativePopupNavigationProtocol).windowsManager?.getCurrentUIWindow()?.rootViewController else { return }
+            
+            while rootViewController.presentedViewController != nil {
+                rootViewController = rootViewController.presentedViewController!
+            }
+            
+            rootViewController.present(documentPicker, animated: true, completion: nil)
+        }
     }
     
     public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
