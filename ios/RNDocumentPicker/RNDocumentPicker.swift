@@ -11,7 +11,7 @@ import UIKit
 import React
 import ReactNativePopupNavigation
 
-@objc(RNNavigation)
+@objc(RNDocumentPicker)
 public class RNDocumentPicker: NSObject, RCTBridgeModule, UIDocumentMenuDelegate, UIDocumentPickerDelegate {
     lazy var composeCallbacks = [RCTResponseSenderBlock]()
     
@@ -20,34 +20,29 @@ public class RNDocumentPicker: NSObject, RCTBridgeModule, UIDocumentMenuDelegate
     }
     
     @objc(show:callback:)
-    public func show(options: NSDictionary, callback: RCTResponseSenderBlock) {
-        let allowedUTIs = RCTConvert.NSArray(options["filetype"])
+    public func show(options: NSDictionary, callback: @escaping RCTResponseSenderBlock) {
+        let allowedUTIs = RCTConvert.nsArray(options["filetype"])
         
-        let documentPicker: UIDocumentPickerViewController = UIDocumentPickerViewController.init(documentTypes: allowedUTIs, in: .import)
+        let documentPicker: UIDocumentPickerViewController = UIDocumentPickerViewController.init(documentTypes: allowedUTIs as! [String], in: .import)
         
-        composeCallbacks.add(callback)
+        composeCallbacks.append(callback)
         
         documentPicker.delegate = self
         documentPicker.modalPresentationStyle = .formSheet
         
-        var rootViewController: UIViewController = (UIApplication.shared.delegate as ReactNativePopupNavigationProtocol).windowsManager.getCurrentUIWindow()
-        while rootViewController.modalViewController != nil {
-            rootViewController = rootViewController.modalViewController
-        }
+        let rootViewController: UIViewController? = (UIApplication.shared.delegate as! ReactNativePopupNavigationProtocol).windowsManager?.getCurrentUIWindow()?.rootViewController
         
-        rootViewController.present(documentPicker, animated: true, completion: nil)
+        
+        rootViewController?.present(documentPicker, animated: true, completion: nil)
     }
     
     public func documentMenu(_ documentMenu: UIDocumentMenuViewController, didPickDocumentPicker documentPicker: UIDocumentPickerViewController) {
         documentPicker.delegate = self
         documentPicker.modalPresentationStyle = .formSheet
         
-        var rootViewController: UIViewController = (UIApplication.shared.delegate as ReactNativePopupNavigationProtocol).windowsManager.getCurrentUIWindow()
-        while rootViewController.modalViewController != nil {
-            rootViewController = rootViewController.modalViewController
-        }
+        let rootViewController: UIViewController? = (UIApplication.shared.delegate as! ReactNativePopupNavigationProtocol).windowsManager?.getCurrentUIWindow()?.rootViewController
         
-        rootViewController.present(documentPicker, animated: true, completion: nil)
+        rootViewController?.present(documentPicker, animated: true, completion: nil)
     }
     
     public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
@@ -55,14 +50,14 @@ public class RNDocumentPicker: NSObject, RCTBridgeModule, UIDocumentMenuDelegate
             return
         }
         
-        let callback = composeCallbacks.popLast()
+        guard let callback = composeCallbacks.popLast() else { return }
         
         url.startAccessingSecurityScopedResource()
         
         let coordinator = NSFileCoordinator(filePresenter: nil)
-        var error: NSErrorPointer? = nil
+        var error: NSErrorPointer = nil
         coordinator.coordinate(readingItemAt: url, options: .resolvesSymbolicLink, error: error, byAccessor: { (newURL: URL) -> Void in
-            let result = [String: Any]()
+            var result = [String: Any]()
             
             result["uri"] = newURL.absoluteString
             result["fileName"] = newURL.lastPathComponent
@@ -70,6 +65,8 @@ public class RNDocumentPicker: NSObject, RCTBridgeModule, UIDocumentMenuDelegate
             do {
                 let fileAttributes = try FileManager.default.attributesOfItem(atPath: newURL.path)
                 result["fileSize"] = fileAttributes[.size]
+            } catch {
+                print("Couldn't get file attributes")
             }
             
             callback([NSNull(), result])

@@ -8,5 +8,5 @@
 #import <React/RCTBridgeModule.h>
 
 @interface RCT_EXTERN_MODULE(RNDocumentPicker, NSObject)
-RCT_EXPORT_METHOD(show:(NSDictionary<NSString *, id> * _Nonnull)options callback:(RCTResponseSenderBlock _Nonnull)callback);
+RCT_EXTERN_METHOD(show:(NSDictionary<NSString *, id> * _Nonnull)options callback:(RCTResponseSenderBlock _Nonnull)callback);
 @end
