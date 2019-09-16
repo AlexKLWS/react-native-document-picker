@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.source          = { :git => "https://github.com/Elyx0/react-native-document-picker" }
   s.source_files    = "ios/RNDocumentPicker/*.{swift,m}"
   s.swift_version = '5.0'
-  s.platform        = :ios, "7.0"
+  s.platform        = :ios, "10.0"
   s.dependency        'React'
   s.dependency        'ReactNativePopupNavigation'
 end
